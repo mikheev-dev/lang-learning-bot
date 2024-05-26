@@ -1,7 +1,7 @@
 package main
 
 import (
-	// "log/slog"
+	"log/slog"
 	// "os"
 	// "time"
 
@@ -9,7 +9,6 @@ import (
 
 	"fmt"
 	translation "lang_learning_bot/translation"
-	"log/slog"
 )
 
 func main() {
@@ -30,9 +29,11 @@ func main() {
 
 	// b.Start()
 
+	// =====================================================
+
 	var textToTranslate string = "Hello, world!"
 
-	api := translation.NewDeeplTranslatorAPI(translation.DLEn)
+	api := translation.NewDeepLTranslator(translation.DLEn)
 
 	translatedText, err := api.Translate(textToTranslate)
 	if err != nil {
@@ -40,4 +41,26 @@ func main() {
 	}
 
 	slog.Info(fmt.Sprintf("Translated %s into %s", textToTranslate, translatedText))
+
+	//=====================================================
+
+	// var translator translation.Translator = translation.NewLingueeTranslator(translation.LingueeEn)
+
+	// translatedText, _ := translator.Translate("insult")
+
+	// fmt.Println(translatedText)
+
+	//=====================================================
+
+	// var translator translation.TermTranslator = translation.NewYandexDictionaryTranslator(translation.YDEn)
+
+	// var wordToTranslate string = "carry on"
+	// translatedText, err := translator.Translate(wordToTranslate)
+
+	// if err != nil {
+	// 	slog.Error(err.Error())
+	// }
+
+	// slog.Info(fmt.Sprintf("Translated %s into %s", wordToTranslate, translatedText))
+
 }
